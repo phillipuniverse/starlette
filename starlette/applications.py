@@ -166,7 +166,7 @@ class Starlette:
     def add_exception_handler(
         self,
         exc_class_or_status_code: typing.Union[int, typing.Type[Exception]],
-        handler: typing.Callable[[Request, Any], typing.Coroutine[Any, Any, Response]],
+        handler: typing.Callable[[Request, Exception], typing.Union[Response, typing.Coroutine[typing.Any, typing.Any, Response]]],
     ) -> None:  # pragma: no cover
         self.exception_handlers[exc_class_or_status_code] = handler
         self.middleware_stack = self.build_middleware_stack()
